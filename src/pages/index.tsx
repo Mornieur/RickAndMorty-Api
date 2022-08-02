@@ -3,6 +3,37 @@ import Image from 'next/image'
 import * as S from '../homePageStyles/homePage'
 import { useEffect, useState } from 'react'
 import { AiFillCaretRight } from 'react-icons/ai'
+import Link from 'next/link'
+
+interface TypeData {
+  data: {
+    info: {
+      cont: number
+      next: string
+      pages: number
+      prev: null
+    }
+    results: {
+      created: string
+      gender: string
+      id: number
+      name: string
+      status: string
+      image: string
+      url: string
+      type: string
+      species: string
+      location: {
+        name: string
+        url: string
+      }
+      origin: {
+        name: string
+        url: string
+      }
+    }[]
+  }
+}
 
 const defaultEndpoint = 'https://rickandmortyapi.com/api/character/'
 
@@ -17,7 +48,7 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Home({ data }: any) {
+export default function Home({ data }: TypeData) {
   const { info, results: defaultResults = [] } = data
   const [results, setResults] = useState(defaultResults)
   const [page, setPage] = useState({
@@ -44,7 +75,7 @@ export default function Home({ data }: any) {
         return
       }
 
-      setResults((prev: any) => {
+      setResults((prev) => {
         return [...prev, ...nextData.results]
       })
     }
@@ -72,6 +103,7 @@ export default function Home({ data }: any) {
     const endpoint = `https://rickandmortyapi.com/api/character/?name=${value}`
 
     setPage({
+      ...info,
       current: endpoint
     })
   }
@@ -80,11 +112,9 @@ export default function Home({ data }: any) {
       <S.MainContainer>
         <h1>Wabba Lubba Dub dub!</h1>
 
-        <p className="description">Rick and Morty Biblioteca</p>
-
         <form className="search" onSubmit={handleOnSubmitSearch}>
           <input name="query" type="search" />
-          <button>Pesquisar</button>
+          <button>Procurar</button>
         </form>
 
         <ul className="grid">
@@ -92,12 +122,16 @@ export default function Home({ data }: any) {
             const { id, name, image } = result
 
             return (
-              <li key={id} className="card">
-                <a href="https://nextjs.org/docs">
+              <Link href={`/characters/${id}`} passHref>
+                <li key={id} className="card">
                   <img src={image} alt={`${name}Thumb`} />
-                  <h2>{name}</h2>
-                </a>
-              </li>
+                  <S.TitleCharacter>
+                    <section>
+                      <h2 className="btn btn1">{name}</h2>
+                    </section>
+                  </S.TitleCharacter>
+                </li>
+              </Link>
             )
           })}
         </ul>
