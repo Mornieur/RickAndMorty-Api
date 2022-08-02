@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
 
 
 body {
-  background-color: var(--white-100);
+  background-color: black;
 
  
   width:100%;
