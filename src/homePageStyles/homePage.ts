@@ -29,7 +29,6 @@ export const Container = styled.div`
   background-color: black;
   background-image: url('fundoEstrelado.jpg');
   background-size: auto;
-  background-position: center center;
   padding: 0;
   margin: 0;
   width: 100vw;
