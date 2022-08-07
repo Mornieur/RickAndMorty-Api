@@ -30,30 +30,25 @@ export default function Caracter({ data }: any) {
         <h1 className="title">{name}</h1>
         <S.Profile>
           <S.ProfileImage>
-            <img src={image} alt={name} />
+            <section>
+              <img width="200px" height="70px" src={image} alt={name} />
+            </section>
           </S.ProfileImage>
           <S.ProfileDetails>
             <h2>Características</h2>
-            <ul>
-              <li>
-                <strong>Nome: {name}</strong>
-              </li>
-              <li>
-                <strong>Status:{status}</strong>
-              </li>
-              <li>
-                <strong>Gênero:{gender}</strong>
-              </li>
-              <li>
-                <strong>Espécie:{species}</strong>
-              </li>
-              <li>
-                <strong>Localização:{location?.name}</strong>
-              </li>
-              <li>
-                <strong>Originalmente de:{origin?.name}</strong>
-              </li>
-            </ul>
+            <S.ProfileTitle>
+              <strong>Nome: {name}</strong>
+
+              <strong>Status:{status}</strong>
+
+              <strong>Gênero:{gender}</strong>
+
+              <strong>Espécie:{species}</strong>
+
+              <strong>Localização:{location?.name}</strong>
+
+              <strong>Originalmente de:{origin?.name}</strong>
+            </S.ProfileTitle>
           </S.ProfileDetails>
         </S.Profile>
       </S.Container>
