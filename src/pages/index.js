@@ -3,6 +3,7 @@ import Image from 'next/image'
 import * as S from '../styles/homePageStyles/module'
 import { useEffect, useState } from 'react'
 import { AiFillCaretRight } from 'react-icons/ai'
+import Link from 'next/link'
 
 const defaultEndpoint = 'https://rickandmortyapi.com/api/character/'
 
@@ -67,7 +68,6 @@ export default function Home({ data }) {
     const { currentTarget = {} } = e
     const fields = Array.from(currentTarget?.elements)
     const fieldQuery = fields.find((field) => field.name === 'query')
-
     const value = fieldQuery.value || ''
     const endpoint = `https://rickandmortyapi.com/api/character/?name=${value}`
 
@@ -83,7 +83,7 @@ export default function Home({ data }) {
       </Head>
 
       <S.MainContainer>
-        <h1>Wabba Lubba Dub dub!</h1>
+        <S.Title>Wabba Lubba Dub dub!</S.Title>
 
         <p className="description">Rick and Morty Biblioteca</p>
 
@@ -94,14 +94,21 @@ export default function Home({ data }) {
 
         <ul className="grid">
           {results.map((result) => {
-            const { id, name, image } = result
-
+            const { id, name, image, status } = result
             return (
               <li key={id} className="card">
-                <a href="https://nextjs.org/docs">
-                  <img src={image} alt={`${name}Thumb`} />
-                  <h2>{name}</h2>
-                </a>
+                <S.Status status={status}>{status}</S.Status>
+                <Link href="/character/[id]" as={`/character/${id}`}>
+                  <a>
+                    <Image
+                      src={image}
+                      alt={`${name}Thumb`}
+                      width={300}
+                      height={300}
+                    />
+                    <h2>{name}</h2>
+                  </a>
+                </Link>
               </li>
             )
           })}
