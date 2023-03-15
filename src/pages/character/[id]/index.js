@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import * as S from './styles'
+import * as S from '../../../styles/profilePage/styles'
 
 const defaultEndpoint = 'https://rickandmortyapi.com/api/character/'
 
