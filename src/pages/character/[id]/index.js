@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import * as S from './styles'
 
 const defaultEndpoint = 'https://rickandmortyapi.com/api/character/'
 
@@ -19,49 +20,42 @@ export default function Caracter({ data }) {
   const { name, image, gender, location, origin, species, status } = data
 
   return (
-    <div>
+    <S.Container>
       <Head>
         <title>{name}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1 className="title">{name}</h1>
-        <div className="profile">
-          <div className="profile-image">
-            <Image src={image} alt={name} width={300} height={300} />
-          </div>
-          <div className="profile-details">
+      <S.Main>
+        <S.Title>{name}</S.Title>
+        <S.Profile>
+          <S.ProfileImage>
+            <Image src={image} alt={name} width={250} height={250} />
+          </S.ProfileImage>
+          <S.ProfileDetails>
             <h2>Características</h2>
             <ul>
-              <li>
-                <strong>Nome:</strong>
-                {name}
-              </li>
-              <li>
-                <strong>Status:</strong>
-                {status}
-              </li>
-              <li>
-                <strong>Gênero:</strong>
-                {gender}
-              </li>
-              <li>
-                <strong>Espécie:</strong>
-                {species}
-              </li>
-              <li>
-                <strong>Localização:</strong>
-                {location?.name}
-              </li>
-              <li>
-                <strong>Originalmente de:</strong>
-                {origin?.name}
-              </li>
+              <strong>Nome:</strong>
+              <span>{name}</span>
+
+              <strong>Status:</strong>
+              <span>{status}</span>
+
+              <strong>Gênero:</strong>
+              <span>{gender}</span>
+
+              <strong>Espécie:</strong>
+              <span>{species}</span>
+
+              <strong>Localização:</strong>
+              <span>{location?.name}</span>
+
+              <strong>Originalmente de:</strong>
+              <span>{origin?.name}</span>
             </ul>
-          </div>
-        </div>
-      </main>
-    </div>
+          </S.ProfileDetails>
+        </S.Profile>
+      </S.Main>
+    </S.Container>
   )
 }
