@@ -28,6 +28,8 @@ export const Profile = styled.div`
   padding: 1rem;
   border-radius: 0.7rem;
   width: 100%;
+  max-height: 33rem;
+  height: 100%;
   li {
     list-style: none;
   }
