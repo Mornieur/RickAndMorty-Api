@@ -2,7 +2,7 @@
 
 Esta API fornece acesso aos dados da série animada Rick and Morty. Os dados incluem personagens, episódios, locais e muito mais.
 
-### Usando a API
+- Usando a API
 
 Para usar a API, você precisará de uma chave de API. Você pode obter uma chave de API criando uma conta no site da API.
 
